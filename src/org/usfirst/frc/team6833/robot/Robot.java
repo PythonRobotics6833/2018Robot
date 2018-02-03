@@ -114,7 +114,7 @@ public class Robot extends IterativeRobot
 	{
 		v_speedLimiter= stick.getRawAxis(2);
 		leftt = -stick.getRawAxis(1)/(2-v_speedLimiter);
-		rightt = -stick.getRawAxis(5)/(2-v_speedLimiter);
+		rightt = stick.getRawAxis(5)/(2-v_speedLimiter);
 			
 		myDrive.tankDrive(leftt, rightt);
 		boolean EB= stick.getRawButton(8);
