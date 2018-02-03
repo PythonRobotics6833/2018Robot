@@ -4,11 +4,31 @@
 # Log file
 *.log
 
-# BlueJ files
-*.ctxt
-
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
+
+# IntelliJ project files 
+*.iml
+*.iws
+*.ipr
+.idea/
+
+# Eclipse project Files
+.settings/
+.classpath
+.project
+
+# NetBeans specific
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+
+# OS
+.DS_Store
 
 # Package Files #
 *.jar
