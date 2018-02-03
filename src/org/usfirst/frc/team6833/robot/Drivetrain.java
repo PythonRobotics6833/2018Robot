@@ -18,8 +18,12 @@ public class Drivetrain {
         //right input is usually 0
         Talon m0_Right = new Talon(right_input);
         SpeedControllerGroup m_right = new SpeedControllerGroup(m0_Right);
-        
+
         myDrive= new DifferentialDrive(m_left, m_right);
+    }
+    public void drive()
+    {
+
     }
 
 }
