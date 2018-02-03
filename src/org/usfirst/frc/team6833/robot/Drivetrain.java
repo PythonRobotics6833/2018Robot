@@ -12,6 +12,7 @@ public class Drivetrain {
     private double right_c;
     //this is the speedLimiter variable.
     private double v_speedLimiter;
+    private int speedLimiterAxis;
     //sets up the Joystick.
     public Joystick stick;
 
@@ -20,10 +21,11 @@ public class Drivetrain {
     {
 
     }
-    public Drivetrain(int leftTalonPort, int rightTalonPort, double v_speedLimiter, Joystick stick)
+    public Drivetrain(int leftTalonPort, int rightTalonPort, int speedLimiterAxis,Joystick stick)
     {
         this.stick= stick;
-        this.v_speedLimiter=v_speedLimiter;
+        //usually 3
+        this.speedLimiterAxis=speedLimiterAxis;
         //left input is usually 1
         Talon m1_left = new Talon(leftTalonPort);
         SpeedControllerGroup m_left = new SpeedControllerGroup(m1_left);
@@ -36,10 +38,14 @@ public class Drivetrain {
     }
     public void drive()
     {
-        v_speedLimiter= stick.getRawAxis(2);
+        v_speedLimiter= stick.getRawAxis(speedLimiterAxis);
         left_c = -stick.getRawAxis(1)/(2-v_speedLimiter);
         right_c = stick.getRawAxis(5)/(2-v_speedLimiter);
         myDrive.tankDrive(left_c, right_c);
+    }
+    public void drive(double left, double right)
+    {
+        myDrive.tankDrive(left,right);
     }
 
 }
