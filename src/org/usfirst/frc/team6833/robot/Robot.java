@@ -32,8 +32,8 @@ public class Robot extends IterativeRobot
 {	
 	//yes this is a test
 	
-	//set up the DifferentalDrive because apparently RobotDrive was too complicated
-	DifferentialDrive myDrive;
+	//set up the the drivetrain
+	Drivetrain myDrive;
 	
 	//Everything else
 	Timer timer;
@@ -41,52 +41,21 @@ public class Robot extends IterativeRobot
 	Joystick liftController;
 	Intake intake;
 
-	double leftt;
-	double rightt;
-	double v_speedLimiter;
-	
 	public void robotInit() 
 	{
 		stick = new Joystick(0);
 		liftController= new Joystick(1);
-		
-		timer= new Timer();
-		
-		//set up the drive train
-		Talon m1_left = new Talon(1);
-		
-		SpeedControllerGroup m_left = new SpeedControllerGroup(m1_left);
 
-		Talon m0_Right = new Talon(0);
-		SpeedControllerGroup m_right = new SpeedControllerGroup(m0_Right);
-		myDrive= new DifferentialDrive(m_left, m_right);
-		
-		//Set up the lift
-		Talon m2_left= new Talon(2);
-		Talon m3_Right= new Talon(3);
-		intake= new Intake(m2_left,m3_Right);
+		//Setting up drive train
+		myDrive= new Drivetrain(1,0,3,stick);
+
+		//Set up the intake
+		intake= new Intake(2,3);
 		
 		//camera code 
           //new Thread(() -> {
-        	   
-        	   CameraServer server = CameraServer.getInstance();
-        	
-        	   server.startAutomaticCapture("cam0", 0);
-                /*((UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
-                camera.setResolution(1920, 1080);
-                
-                CvSink cvSink = CameraServer.getInstance().getVideo();
-                CvSource outputStream = CameraServer.getInstance().putVideo("Blur", 640, 480);
-                
-                Mat source = new Mat();
-                Mat output = new Mat();
-                
-                while(!Thread.interrupted()) 
-                {
-                    cvSink.grabFrame(source);
-                    Imgproc.cvtColor(source, output, Imgproc.COLOR_BGR2GRAY);
-                    outputStream.putFrame(output);
-                }*/
+		CameraServer server = CameraServer.getInstance();
+		server.startAutomaticCapture("cam0", 0);
             //}).start();
 	}
 	
@@ -112,34 +81,27 @@ public class Robot extends IterativeRobot
 	
 	public void teleopPeriodic() 
 	{
-		v_speedLimiter= stick.getRawAxis(2);
-		leftt = -stick.getRawAxis(1)/(2-v_speedLimiter);
-		rightt = stick.getRawAxis(5)/(2-v_speedLimiter);
-			
-		myDrive.tankDrive(leftt, rightt);
+
 		boolean EB= stick.getRawButton(8);
-		
-		//operatorControl();
+		double Intake_input= liftController.getRawAxis(3);
+
+		//if the emergency break is not active
 		if(!EB) 
-		{	
-			myDrive.tankDrive(leftt, rightt);
-		}
-				
-		if(EB) 
 		{
-			myDrive.tankDrive(0, 0);
+            myDrive.drive();
+			intake.intake(Intake_input);
 		}
-			
+		//When the emergency break is active
+		else
+		{
+            myDrive.drive(0.0,0.0);
+            intake.intake(0.0);
+		}
+
+
+
 		
 	}
 
 
-}	
-						
-
-
-	
-	
-	
-	
-
+}

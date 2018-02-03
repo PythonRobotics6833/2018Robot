@@ -17,6 +17,7 @@ public class Intake {
 
 
   public Intake(Talon left, Talon right) {
+
     this.left = left;
     this.right = right;
 
@@ -61,31 +62,67 @@ public class Intake {
   }
 
   public void intake(boolean intake, boolean outtake) {
-    if (intake) {
-      if (leftInverted) {
-        left.set(leftSpeed);
-      }else {
-        left.set(-leftSpeed);
-      }
-
-      if (rightInverted) {
-        right.set(rightSpeed);
-      }else {
-        right.set(-rightSpeed);
-      }
-    }else if (outtake) {
-      if (leftInverted) {
-        left.set(-leftSpeed);
-      }else {
+    if (intake)
+    {
+      if (leftInverted)
+      {
         left.set(leftSpeed);
       }
+      else
+        {
+        left.set(-leftSpeed);
+        }
 
-      if (rightInverted) {
-        right.set(-rightSpeed);
-      }else {
+      if (rightInverted)
+      {
         right.set(rightSpeed);
       }
-    }else {
+      else
+        {
+        right.set(-rightSpeed);
+        }
+    }
+    else if (outtake)
+    {
+      if (leftInverted)
+      {
+        left.set(-leftSpeed);
+      }
+      else
+        {
+        left.set(leftSpeed);
+        }
+
+      if (rightInverted)
+      {
+        right.set(-rightSpeed);
+      }
+      else
+        {
+        right.set(rightSpeed);
+        }
+    }
+    else
+      {
+      left.set(0.0);
+      right.set(0.0);
+      }
+  }
+  public void intake(double liftController)
+  {
+    double inputSqd=(liftController*liftController);
+    if(liftController<0)
+    {
+      left.set(leftSpeed*inputSqd);
+      right.set(rightSpeed*inputSqd);
+    }
+    else if (liftController>0)
+    {
+      left.set(leftSpeed*inputSqd);
+      left.set(rightSpeed*inputSqd);
+    }
+    else
+    {
       left.set(0.0);
       right.set(0.0);
     }
