@@ -51,7 +51,7 @@ public class Robot extends IterativeRobot
 		//myDrive= new Drivetrain(1,0,3,stick);
 
 		//The drivetrain below is for the main robot
-		myDrive=new Drivetrain(1,2,3,4,3,stick);
+		myDrive=new Drivetrain(2,1,3,4,3,stick);
 
 		//Set up the intake
 		intake= new Intake(2,3);
