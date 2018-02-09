@@ -44,7 +44,7 @@ public class Robot extends IterativeRobot
 	public void robotInit() 
 	{
 		stick = new Joystick(0);
-		liftController= new Joystick(1);
+		//liftController= new Joystick(1);
 
 		//Setting up drive train
 		//the one below is for practice robot
@@ -87,13 +87,13 @@ public class Robot extends IterativeRobot
 	{
 
 		boolean EB= stick.getRawButton(8);
-		double Intake_input= liftController.getRawAxis(3);
+		//double Intake_input= liftController.getRawAxis(3);
 
 		//if the emergency break is not active
 		if(!EB) 
 		{
             myDrive.drive();
-			intake.intake(Intake_input);
+			//intake.intake(Intake_input);
 		}
 		//When the emergency break is active
 		else
