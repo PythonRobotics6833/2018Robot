@@ -1,9 +1,12 @@
 package org.usfirst.frc.team6833.robot;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
 
 public class Drivetrain {
     private DifferentialDrive myDrive;
@@ -19,8 +22,10 @@ public class Drivetrain {
     //standard constructor
     public Drivetrain(Talon left, Talon right)
     {
+        TalonSRX exampleTalonSRX = new TalonSRX(2);
 
     }
+    //pratice robot
     public Drivetrain(int leftTalonPort, int rightTalonPort, int speedLimiterAxis,Joystick stick)
     {
         this.stick= stick;
@@ -35,6 +40,31 @@ public class Drivetrain {
         SpeedControllerGroup m_right = new SpeedControllerGroup(m0_Right);
 
         myDrive= new DifferentialDrive(m_left, m_right);
+    }
+    //main robot constructer
+    public Drivetrain(int leftTalonSRXPort1, int rightTalonSRXPort1,int leftTalonSRXPort2, int rightTalonSRXPort2, int speedLimiterAxis, Joystick stick)
+    {
+        this.stick= stick;
+        //usually 3
+        this.speedLimiterAxis=speedLimiterAxis;
+        //These are the masters.
+        WPI_TalonSRX m1_left = new WPI_TalonSRX(leftTalonSRXPort1);
+        WPI_TalonSRX m1_Right = new WPI_TalonSRX(rightTalonSRXPort1);
+
+        //these are slaves
+        WPI_TalonSRX m2_left = new WPI_TalonSRX(leftTalonSRXPort2);
+        WPI_TalonSRX m2_Right= new WPI_TalonSRX(rightTalonSRXPort2);
+
+        myDrive= new DifferentialDrive(m1_left, m1_Right);
+
+        //make the slaves follow the master
+        m2_left.follow(m1_left);
+        m2_Right.follow(m2_Right);
+
+        m1_left.setInverted(false);
+        m2_left.setInverted(false);
+        m1_Right.setInverted(false);
+        m2_Right.setInverted(false);
     }
     public void drive()
     {

@@ -47,7 +47,11 @@ public class Robot extends IterativeRobot
 		liftController= new Joystick(1);
 
 		//Setting up drive train
-		myDrive= new Drivetrain(1,0,3,stick);
+		//the one below is for practice robot
+		//myDrive= new Drivetrain(1,0,3,stick);
+
+		//The drivetrain below is for the main robot
+		myDrive=new Drivetrain(1,2,3,4,3,stick);
 
 		//Set up the intake
 		intake= new Intake(2,3);
