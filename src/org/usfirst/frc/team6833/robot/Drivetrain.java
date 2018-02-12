@@ -59,12 +59,12 @@ public class Drivetrain {
 
         //make the slaves follow the master
         m2_left.follow(m1_left);
-        m2_Right.follow(m2_Right);
+        m2_Right.follow(m1_Right);
 
         m1_left.setInverted(false);
         m2_left.setInverted(false);
-        m1_Right.setInverted(false);
-        m2_Right.setInverted(false);
+        m1_Right.setInverted(true);
+        m2_Right.setInverted(true);
     }
     public void drive()
     {
