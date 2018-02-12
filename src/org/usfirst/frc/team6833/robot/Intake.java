@@ -1,11 +1,12 @@
 package org.usfirst.frc.team6833.robot;
 
 import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.PWMVictorSPX;
 
 public class Intake {
   // Motor directions are based on robot orientation.
-  private Talon left;
-  private Talon right;
+  private PWMVictorSPX left;
+  private PWMVictorSPX right;
 
   // Independent motor speeds
   private double leftSpeed;
@@ -16,7 +17,7 @@ public class Intake {
   private boolean rightInverted;
 
 
-  public Intake(Talon left, Talon right) {
+  /*public Intake(Talon left, Talon right) {
 
     this.left = left;
     this.right = right;
@@ -48,9 +49,19 @@ public class Intake {
 
     this.leftInverted = false;
     this.rightInverted = false;
+  }*/
+  public Intake(int leftPortSPX, int rightPortSPX) {
+    left = new PWMVictorSPX(leftPortSPX);
+    right = new PWMVictorSPX(rightPortSPX);
+
+    leftSpeed = 0.5;
+    rightSpeed = 0.5;
+
+    this.leftInverted = false;
+    this.rightInverted = false;
   }
 
-  public Intake(int leftPort, int rightPort, boolean leftInverted, boolean rightInverted) {
+  /*public Intake(int leftPort, int rightPort, boolean leftInverted, boolean rightInverted) {
     left = new Talon(leftPort);
     right = new Talon(rightPort);
 
@@ -59,7 +70,7 @@ public class Intake {
 
     this.leftInverted = leftInverted;
     this.rightInverted = rightInverted;
-  }
+  }*/
 
   public void intake(boolean intake, boolean outtake) {
     if (intake)
