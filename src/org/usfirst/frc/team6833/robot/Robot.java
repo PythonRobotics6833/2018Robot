@@ -18,6 +18,7 @@ import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.Ultrasonic;
 
 
 /**
@@ -30,11 +31,14 @@ import edu.wpi.first.wpilibj.CameraServer;
 //@SuppressWarnings("deprecation")
 public class Robot extends IterativeRobot 
 {	
-	//yes this is a test
-	
+	//Serial port set up
+	Ultrasonic sonic1;
+	Ultrasonic sonic2;
+	Ultrasonic sonic3;
+	Ultrasonic sonic4;
 	//set up the the drivetrain
 	Drivetrain myDrive;
-	
+
 	//Everything else
 	Timer timer;
 	Joystick stick;
@@ -43,6 +47,11 @@ public class Robot extends IterativeRobot
 
 	public void robotInit() 
 	{
+		sonic1= new Ultrasonic(0,1);
+		sonic2=new Ultrasonic(2,3);
+		sonic3= new Ultrasonic(4,5);
+		sonic4=new Ultrasonic(6,7);
+
 		stick = new Joystick(0);
 		//liftController= new Joystick(1);
 
@@ -55,7 +64,12 @@ public class Robot extends IterativeRobot
 
 		//Set up the intake
 		intake= new Intake(2,3);
-		
+
+
+		sonic1.setAutomaticMode(true);
+		sonic2.setAutomaticMode(true);
+		sonic3.setAutomaticMode(true);
+		sonic4.setAutomaticMode(true);
 		//camera code 
           //new Thread(() -> {
 		CameraServer server = CameraServer.getInstance();
@@ -85,7 +99,7 @@ public class Robot extends IterativeRobot
 	
 	public void teleopPeriodic() 
 	{
-
+		double inches=sonic1.getRangeInches();
 		boolean EB= stick.getRawButton(8);
 		//double Intake_input= liftController.getRawAxis(3);
 
@@ -101,7 +115,7 @@ public class Robot extends IterativeRobot
             myDrive.drive(0.0,0.0);
             intake.intake(0.0);
 		}
-
+		System.err.println("inches"+inches);
 
 
 		
