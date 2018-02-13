@@ -99,7 +99,10 @@ public class Robot extends IterativeRobot
 	
 	public void teleopPeriodic() 
 	{
-		double inches=sonic1.getRangeInches();
+		double inch1=sonic1.getRangeInches();
+		double inch2=sonic2.getRangeInches();
+		double inch3=sonic3.getRangeInches();
+		double inch4=sonic4.getRangeInches();
 		boolean EB= stick.getRawButton(8);
 		//double Intake_input= liftController.getRawAxis(3);
 
@@ -115,7 +118,7 @@ public class Robot extends IterativeRobot
             myDrive.drive(0.0,0.0);
             intake.intake(0.0);
 		}
-		System.err.println("inches"+inches);
+		System.err.println("inches 1"+inch1+"inches 2"+inch2+"inches 3"+inch3+"inches 4"+inch4);
 
 
 		
