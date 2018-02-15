@@ -88,14 +88,24 @@ public class Drivetrain {
         myDrive.tankDrive(left,right);
     }
 
-    public double getEncoderLeft()
+    public double getEncoderLeftV()
     {
         return m1_left.getSelectedSensorVelocity(0);
     }
 
-    public double getEncoderRight()
+    public double getEncoderRightV()
     {
         return m1_Right.getSelectedSensorVelocity(0);
+    }
+
+    public double getEncoderLeftP()
+    {
+        return m1_left.getSelectedSensorPosition(0);
+    }
+
+    public double getEncoderRightP()
+    {
+        return m1_Right.getSelectedSensorPosition(0);
     }
 
 }
