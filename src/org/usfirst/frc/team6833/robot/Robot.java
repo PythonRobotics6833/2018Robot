@@ -119,7 +119,7 @@ public class Robot extends IterativeRobot
             intake.intake(0.0);
 		}
 		//System.err.println("inches 1 "+inch1+"inches 2 "+inch2+"inches 3 "+inch3+"inches 4 "+inch4);
-		System.err.println(myDrive.getEncoderLeftP());
+		System.err.println(myDrive.getEncoderLeftV());
 
 		
 	}

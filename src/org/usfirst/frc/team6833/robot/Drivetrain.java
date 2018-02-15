@@ -90,23 +90,22 @@ public class Drivetrain {
 
     public double getEncoderLeftV()
     {
-        return m1_left.getSelectedSensorVelocity(0);
+        return -(m1_left.getSelectedSensorVelocity(0));
     }
 
     public double getEncoderRightV()
     {
-        return m1_Right.getSelectedSensorVelocity(0);
+        return -(m1_Right.getSelectedSensorVelocity(0));
     }
 
     public double getEncoderLeftP()
     {
-        return m1_left.getSelectedSensorPosition(0);
-        //m1_left.getSensorCollection().getQuadraturePosition();
+        return -(m1_left.getSelectedSensorPosition(0)); //m1_left.getSensorCollection().getQuadraturePosition();
     }
 
     public double getEncoderRightP()
     {
-        return m1_Right.getSelectedSensorPosition(0);
+        return -(m1_Right.getSelectedSensorPosition(0));
     }
 
 }
