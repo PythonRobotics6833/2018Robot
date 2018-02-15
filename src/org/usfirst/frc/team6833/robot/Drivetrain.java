@@ -101,6 +101,7 @@ public class Drivetrain {
     public double getEncoderLeftP()
     {
         return m1_left.getSelectedSensorPosition(0);
+        //m1_left.getSensorCollection().getQuadraturePosition();
     }
 
     public double getEncoderRightP()

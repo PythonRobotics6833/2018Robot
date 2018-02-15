@@ -60,7 +60,7 @@ public class Robot extends IterativeRobot
 		//myDrive= new Drivetrain(1,0,3,stick);
 
 		//The drivetrain below is for the main robot
-		myDrive=new Drivetrain(2,1,3,4,3,stick);
+		myDrive=new Drivetrain(3,1,2,4,3,stick);
 
 		//Set up the intake
 		intake= new Intake(2,3);
@@ -118,8 +118,8 @@ public class Robot extends IterativeRobot
             myDrive.drive(0.0,0.0);
             intake.intake(0.0);
 		}
-		System.err.println("inches 1 "+inch1+"inches 2 "+inch2+"inches 3 "+inch3+"inches 4 "+inch4);
-
+		//System.err.println("inches 1 "+inch1+"inches 2 "+inch2+"inches 3 "+inch3+"inches 4 "+inch4);
+		System.err.println(myDrive.getEncoderLeftP());
 
 		
 	}
