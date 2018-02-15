@@ -20,6 +20,10 @@ public class Drivetrain {
     //sets up the Joystick.
     public Joystick stick;
 
+    WPI_TalonSRX m1_left;
+    WPI_TalonSRX m1_Right;
+
+
     //standard constructor
     public Drivetrain(Talon left, Talon right)
     {
@@ -49,8 +53,8 @@ public class Drivetrain {
         //usually 3
         this.speedLimiterAxis=speedLimiterAxis;
         //These are the masters.
-        WPI_TalonSRX m1_left = new WPI_TalonSRX(leftTalonSRXPort1);
-        WPI_TalonSRX m1_Right = new WPI_TalonSRX(rightTalonSRXPort1);
+        m1_left = new WPI_TalonSRX(leftTalonSRXPort1);
+        m1_Right = new WPI_TalonSRX(rightTalonSRXPort1);
 
         //these are slaves
         WPI_TalonSRX m2_left = new WPI_TalonSRX(leftTalonSRXPort2);
@@ -82,6 +86,16 @@ public class Drivetrain {
     public void drive(double left, double right)
     {
         myDrive.tankDrive(left,right);
+    }
+
+    public double getEncoderLeft()
+    {
+        return m1_left.getSelectedSensorVelocity(0);
+    }
+
+    public double getEncoderRight()
+    {
+        return m1_Right.getSelectedSensorVelocity(0);
     }
 
 }
