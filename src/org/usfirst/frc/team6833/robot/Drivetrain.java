@@ -1,5 +1,6 @@
 package org.usfirst.frc.team6833.robot;
 
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
@@ -65,6 +66,11 @@ public class Drivetrain {
         m2_left.setInverted(false);
         m1_Right.setInverted(true);
         m2_Right.setInverted(true);
+
+        //make the
+        m1_left.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder,0,0);
+        m1_Right.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder,0,0);
+
     }
     public void drive()
     {
