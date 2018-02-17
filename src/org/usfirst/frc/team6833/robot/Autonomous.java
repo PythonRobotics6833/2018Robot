@@ -13,7 +13,7 @@ public class Autonomous {
     private boolean left;
     private boolean foward;
     private boolean backward;
-    private double angle = 90;
+    public double angle = 90;
 
     //all x lines in field
     int fieldx1[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -263,18 +263,22 @@ public class Autonomous {
         if(this.angle==0)
         {
             currenty=(currenty-Math.toIntExact(Math.round(distance/18)));
+            return;
         }
         if(this.angle==90)
         {
             currentx=(currentx+Math.toIntExact(Math.round(distance/18)));
+            return;
         }
         if(this.angle==180)
         {
             currenty=(currenty+Math.toIntExact(Math.round(distance/18)));
+            return
         }
         if(this.angle==270)
         {
             currentx=(currentx-Math.toIntExact(Math.round(distance/18)));
+            return;
         }
     }
     public void moveBackward(double distance, double positionL, double positionR)
