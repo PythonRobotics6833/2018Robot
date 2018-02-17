@@ -38,6 +38,7 @@ public class Robot extends IterativeRobot
 	Ultrasonic sonic4;
 	//set up the the drivetrain
 	Drivetrain myDrive;
+	Autonomous auto;
 
 	//Everything else
 	Timer timer;
@@ -62,6 +63,7 @@ public class Robot extends IterativeRobot
 		//The drivetrain below is for the main robot
 		myDrive=new Drivetrain(3,1,2,4,3,stick);
 
+		auto=new Autonomous(myDrive,0);
 		//Set up the intake
 		intake= new Intake(2,3);
 
