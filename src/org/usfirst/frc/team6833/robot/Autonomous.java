@@ -255,7 +255,7 @@ public class Autonomous {
     public void moveFoward(double distance, double positionL, double positionR)
     {
         ///distance is in inches
-        while ((drive.getEncoderLeftP()-positionL)<( (1024*(distance/8)) -(drive.getEncoderLeftV()/2) ))
+        while ((drive.getEncoderLeftP()-positionL)<( (1024*(distance/8)) -(drive.getEncoderLeftV()) ))
         {
             drive.drive(.5,-.5);
         }
