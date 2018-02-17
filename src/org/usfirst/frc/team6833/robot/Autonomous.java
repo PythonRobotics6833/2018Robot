@@ -6,6 +6,8 @@ public class Autonomous {
     int StartingPoint;
     double turnL;
     double turnR;
+    int currentx;
+    int currenty;
 
     private boolean right;
     private boolean left;
@@ -72,24 +74,36 @@ public class Autonomous {
             switch (StartingPoint) {
                 case 0:
                     fieldy[5][35] = 2;
+                    this.currentx=35;
+                    this.currenty=5;
                     break;
                 case 1:
                     fieldy[9][35] = 2;
+                    this.currentx=35;
+                    this.currenty=9;
                     break;
                 case 2:
                     fieldy[14][35] = 2;
+                    this.currentx=0;
+                    this.currenty=14;
                     break;
             }
         } else {
             switch (StartingPoint) {
                 case 0:
                     fieldy[5][0] = 2;
+                    this.currentx=0;
+                    this.currenty=5;
                     break;
                 case 1:
                     fieldy[9][0] = 2;
+                    this.currentx=0;
+                    this.currenty=9;
                     break;
                 case 2:
                     fieldy[14][0] = 2;
+                    this.currentx=0;
+                    this.currenty=14;
                     break;
             }
         }
@@ -123,7 +137,7 @@ public class Autonomous {
         }
     }
 
-    public void driveToWayPoint(int position)
+    public void driveToWayPoint(int positionx, int positiony)
     {
 
     }
@@ -169,19 +183,22 @@ public class Autonomous {
         {
             drive.drive(1,1);
         }
-        switch(this.angle)
+
+        if(this.angle==0)
         {
-            case 0:;
-            break;
 
-            case 90:;
-            break;
+        }
+        if(this.angle==90)
+        {
 
-            case 180:;
-            break;
+        }
+        if(this.angle==180)
+        {
 
-            case 270:;
-            break;
+        }
+        if(this.angle==270)
+        {
+
         }
     }
     public void moveBackward(double distance, double positionL, double positionR)
