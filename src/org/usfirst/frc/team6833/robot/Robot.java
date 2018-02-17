@@ -82,6 +82,7 @@ public class Robot extends IterativeRobot
 	
 	public void autonomousInit() 
 	{
+	    System.err.println(myDrive.getEncoderLeftP());
 	}
 
 	/**
@@ -94,8 +95,9 @@ public class Robot extends IterativeRobot
 		if(yes==false)
 		{
 			auto.moveFoward(8, myDrive.getEncoderLeftP(), myDrive.getEncoderRightP());
+            System.err.println(myDrive.getEncoderLeftP());
 			yes=true;
-			System.err.println(myDrive.getEncoderLeftP());
+
 		}
 	}
 
