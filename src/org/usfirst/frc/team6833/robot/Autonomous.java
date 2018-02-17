@@ -186,19 +186,19 @@ public class Autonomous {
 
         if(this.angle==0)
         {
-
+            currenty=(currenty-Math.toIntExact(Math.round(distance/18)));
         }
         if(this.angle==90)
         {
-
+            currentx=(currentx+Math.toIntExact(Math.round(distance/18)));
         }
         if(this.angle==180)
         {
-
+            currenty=(currenty+Math.toIntExact(Math.round(distance/18)));
         }
         if(this.angle==270)
         {
-
+            currentx=(currentx-Math.toIntExact(Math.round(distance/18)));
         }
     }
     public void moveBackward(double distance, double positionL, double positionR)
