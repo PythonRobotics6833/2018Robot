@@ -123,33 +123,74 @@ public class Autonomous {
         }
     }
 
-    public void driveToWayPoint(int position) {
+    public void driveToWayPoint(int position)
+    {
 
     }
-    public void turn(double angle, double posisionL, double posisionR)
+    public void turn(double angle, double positionL, double positionR)
     {
         if(angle== -90)
         {
-            if((drive.getEncoderRightP()-posisionR)<(19.125*1024) )
+            if((drive.getEncoderRightP()-positionR)<(19.125*1024) )
             {
                 drive.drive(-1,1);
             }
             else
             {
+                this.angle= this.angle+angle;
+                if (this.angle<0)
+                {
+                    this.angle=360-angle;
+                }
                 return;
             }
         }
         else if(angle== 90)
         {
-            if((drive.getEncoderLeftP()-posisionL)<(19.125*1024))
+            if((drive.getEncoderLeftP()-positionL)<(19.125*1024))
             {
                 drive.drive(1,-1);
             }
             else
                 {
-                return;
-            }
+                    this.angle= this.angle+angle;
+                    if (this.angle>360)
+                    {
+                        this.angle=angle-360;
+                    }
+                    return;
+                }
         }
+    }
+    public void moveFoward(double distance, double positionL, double positionR)
+    {
+        ///distance is in inches
+        while ((drive.getEncoderLeftP()-positionL)<(1024*(distance/8)))
+        {
+            drive.drive(1,1);
+        }
+        switch(this.angle)
+        {
+            case 0:;
+            break;
+
+            case 90:;
+            break;
+
+            case 180:;
+            break;
+
+            case 270:;
+            break;
+        }
+    }
+    public void moveBackward(double distance, double positionL, double positionR)
+    {
+        ///distance is in inches
+            if ((drive.getEncoderLeftP()-positionL)>(1024*(distance/8)))
+            {
+                drive.drive(-1,-1);
+            }
     }
 
 
