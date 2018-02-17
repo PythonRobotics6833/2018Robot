@@ -92,7 +92,12 @@ public class Robot extends IterativeRobot
 	
 	public void autonomousPeriodic() 
 	{
-		
+		boolean yes=false;
+		if(yes==false)
+		{
+			auto.turn(1,true,myDrive.getEncoderLeftP(),myDrive.getEncoderRightP());
+
+		}
 	}
 
 	/**

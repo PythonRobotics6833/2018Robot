@@ -247,6 +247,10 @@ public class Autonomous {
                     return;
                 }
         }
+        if((drive.getEncoderLeftP()-positionL)<0.1&& (drive.getEncoderLeftP()-positionL)>-0.1)
+        {
+            return;
+        }
     }
     public void moveFoward(double distance, double positionL, double positionR)
     {
