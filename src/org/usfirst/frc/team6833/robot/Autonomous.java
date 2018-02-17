@@ -139,13 +139,46 @@ public class Autonomous {
 
     public void driveToWayPoint(int positionx, int positiony)
     {
+        //find the delta of one
+        int deltaX=positionx-currentx;
+        int deltaY=positiony-currenty;
+
+        if(deltaX<0 && this.angle != 270)
+        {
+            if (this.angle > 270)
+            {
+                turn(1,true, drive.getEncoderLeftP(),drive.getEncoderLeftP());
+            }
+            else
+                {
+                    turn(((270-this.angle)/90),false, drive.getEncoderLeftP(),drive.getEncoderLeftP());
+                }
+        }
+        //set up
+        if(deltaX>0&& this.angle !=180)
+        {
+            if (this.angle > 180)
+            {
+                turn(((this.angle-180)/90),true, drive.getEncoderLeftP(),drive.getEncoderLeftP());
+            }
+            else
+            {
+                turn( ((180-this.angle)/90),false, drive.getEncoderLeftP(),drive.getEncoderLeftP());
+            }
+        }
+
+        if((deltaX>0 && this.angle==180) || (deltaX<0 && this.angle ==270))
+        {
+            moveFoward(deltaX*18,drive.getEncoderLeftP(),drive.getEncoderRightP());
+        }
 
     }
-    public void turn(double angle, double positionL, double positionR)
+    public void turn(double angle,boolean turnl, double positionL, double positionR)
     {
-        if(angle== -90)
+        ///angle is how many 90 degree
+        if(turnl==true)
         {
-            if((drive.getEncoderRightP()-positionR)<(19.125*1024) )
+            if((drive.getEncoderRightP()-positionR)<((19.125*1024)*angle) )
             {
                 drive.drive(-1,1);
             }
@@ -159,9 +192,9 @@ public class Autonomous {
                 return;
             }
         }
-        else if(angle== 90)
+        else if(turnl==false)
         {
-            if((drive.getEncoderLeftP()-positionL)<(19.125*1024))
+            if((drive.getEncoderLeftP()-positionL)<((19.125*1024)*angle))
             {
                 drive.drive(1,-1);
             }
