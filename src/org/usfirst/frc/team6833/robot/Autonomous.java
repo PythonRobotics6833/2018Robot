@@ -126,6 +126,32 @@ public class Autonomous {
     public void driveToWayPoint(int position) {
 
     }
+    public void turn(double angle, double posisionL, double posisionR)
+    {
+        if(angle== -90)
+        {
+            if((drive.getEncoderRightP()-posisionR)<(19.125*1024) )
+            {
+                drive.drive(-1,1);
+            }
+            else
+            {
+                return;
+            }
+        }
+        else if(angle== 90)
+        {
+            if((drive.getEncoderLeftP()-posisionL)<(19.125*1024))
+            {
+                drive.drive(1,-1);
+            }
+            else
+                {
+                return;
+            }
+        }
+    }
+
 
 }
 
