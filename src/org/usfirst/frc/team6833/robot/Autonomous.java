@@ -177,6 +177,7 @@ public class Autonomous {
         //check to see if we can start moving in the y direction
         if(deltaX==0)
         {
+            //if we have to move in the - y direction
             if(deltaY<0 && this.angle != 0)
             {
                 if (this.angle > 0 && this.angle<=180)
@@ -188,7 +189,7 @@ public class Autonomous {
                     turn(((360-this.angle)/90),false, drive.getEncoderLeftP(),drive.getEncoderLeftP());
                 }
             }
-            //set up
+            //if we have to go in the + y direction
             if(deltaY>0&& this.angle !=180)
             {
                 if (this.angle > 180)
@@ -200,12 +201,12 @@ public class Autonomous {
                     turn( ((180-this.angle)/90),false, drive.getEncoderLeftP(),drive.getEncoderLeftP());
                 }
             }
-            //drive on the x axis
+            //drive on the y axis
             if((deltaY>0 && this.angle==180) || (deltaY<0 && this.angle ==270))
             {
 
-                moveFoward(deltaX*18,drive.getEncoderLeftP(),drive.getEncoderRightP());
-                deltaX=0;
+                moveFoward(deltaY*18,drive.getEncoderLeftP(),drive.getEncoderRightP());
+                deltaY=0;
             }
         }
 
