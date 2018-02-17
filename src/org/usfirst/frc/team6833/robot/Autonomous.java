@@ -217,7 +217,7 @@ public class Autonomous {
         ///angle is how many 90 degree
         if(turnl==true)
         {
-            if((drive.getEncoderRightP()-positionR)<((19.125*2048)*angle) )
+            if((drive.getEncoderRightP()-positionR)<((19.125*1024)*angle) )
             {
                 drive.drive(-1,1);
             }
@@ -233,7 +233,7 @@ public class Autonomous {
         }
         else if(turnl==false)
         {
-            if((drive.getEncoderLeftP()-positionL)<((19.125*2048)*angle))
+            if((drive.getEncoderLeftP()-positionL)<((19.125*1024)*angle))
             {
                 drive.drive(1,-1);
             }
@@ -255,7 +255,7 @@ public class Autonomous {
     public void moveFoward(double distance, double positionL, double positionR)
     {
         ///distance is in inches
-        while ((drive.getEncoderLeftP()-positionL)<(2048*(distance/8)))
+        while ((drive.getEncoderLeftP()-positionL)<(1024*(distance/8)))
         {
             drive.drive(.5,-.5);
         }
