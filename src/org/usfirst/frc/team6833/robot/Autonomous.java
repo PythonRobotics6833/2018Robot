@@ -257,7 +257,7 @@ public class Autonomous {
         ///distance is in inches
         while ((drive.getEncoderLeftP()-positionL)<(2048*(distance/8)))
         {
-            drive.drive(1,-1);
+            drive.drive(.5,-.5);
         }
 
         if(this.angle==0)
