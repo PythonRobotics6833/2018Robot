@@ -45,7 +45,7 @@ public class Robot extends IterativeRobot
 	Joystick stick;
 	Joystick liftController;
 	Intake intake;
-
+	boolean yes=false;
 	public void robotInit() 
 	{
 		sonic1= new Ultrasonic(0,1);
@@ -82,7 +82,6 @@ public class Robot extends IterativeRobot
 	
 	public void autonomousInit() 
 	{
-		
 	}
 
 	/**
@@ -92,9 +91,14 @@ public class Robot extends IterativeRobot
 	
 	public void autonomousPeriodic() 
 	{
-		if(auto.angle==0)
+		if(yes==false)
 		{
-			auto.turn(1,true,myDrive.getEncoderLeftP(),myDrive.getEncoderRightP());
+			double autox=myDrive.getEncoderLeftP();
+			double autoy=myDrive.getEncoderRightP();
+			auto.moveFoward(8, autox, autoy);
+
+			yes=true;
+			System.err.println(myDrive.getEncoderLeftP());
 		}
 	}
 
