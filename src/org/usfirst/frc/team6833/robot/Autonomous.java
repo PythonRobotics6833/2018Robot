@@ -255,7 +255,7 @@ public class Autonomous {
         ///distance is in inches
         //spare code here  -((distance)*drive.getEncoderLeftV()))
         double currentPos=(drive.getEncoderLeftP()-positionL);
-        double neededPos=(1024*(distance/23));
+        double neededPos=(1024*((distance+5)/23));
 
         while ((currentPos)<neededPos)
         {
