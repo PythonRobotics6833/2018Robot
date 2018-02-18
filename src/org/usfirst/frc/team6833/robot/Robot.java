@@ -94,7 +94,7 @@ public class Robot extends IterativeRobot
 	{
 		if(yes==false)
 		{
-			auto.moveFoward(8, myDrive.getEncoderLeftP(), myDrive.getEncoderRightP());
+			auto.moveFoward(18.85, myDrive.getEncoderLeftP(), myDrive.getEncoderRightP());
             System.err.println(myDrive.getEncoderLeftP());
 			yes=true;
 
