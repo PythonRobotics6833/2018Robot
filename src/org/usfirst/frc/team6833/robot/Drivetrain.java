@@ -86,6 +86,7 @@ public class Drivetrain {
     public void drive(double left, double right)
     {
         myDrive.tankDrive(left,right);
+        return;
     }
 
     public double getEncoderLeftV()

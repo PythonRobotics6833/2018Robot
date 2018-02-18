@@ -219,35 +219,31 @@ public class Autonomous {
         ///angle is how many 90 degree
         if(turnl==true)
         {
-            if((drive.getEncoderRightP()-positionR)<((19.125*1024)*angle) )
+            while((drive.getEncoderRightP()-positionR)<((19.125*1024)*angle) )
             {
-                drive.drive(-1,1);
+                drive.drive(-1,-1);
             }
-            else
+
+            this.angle= this.angle+angle;
+            if (this.angle<0)
             {
-                this.angle= this.angle+angle;
-                if (this.angle<0)
-                {
                     this.angle=360-angle;
-                }
-                return;
             }
+            return;
+
         }
         else if(turnl==false)
         {
-            if((drive.getEncoderLeftP()-positionL)<((19.125*1024)*angle))
+            while((drive.getEncoderLeftP()-positionL)<((19.125*1024)*angle))
             {
-                drive.drive(1,-1);
+                drive.drive(1,1);
             }
-            else
-                {
-                    this.angle= this.angle+angle;
-                    if (this.angle>360)
-                    {
-                        this.angle=angle-360;
-                    }
-                    return;
-                }
+            this.angle= this.angle+angle;
+            if (this.angle>360)
+            {
+                this.angle=angle-360;
+            }
+            return;
         }
         if((drive.getEncoderLeftP()-positionL)<0.1&& (drive.getEncoderLeftP()-positionL)>-0.1)
         {
@@ -259,15 +255,16 @@ public class Autonomous {
         ///distance is in inches
         //spare code here  -((distance)*drive.getEncoderLeftV()))
         double currentPos=(drive.getEncoderLeftP()-positionL);
-        double neededPos=(1024*(distance/18.85));
+        double neededPos=(1024*(distance/23));
 
         while ((currentPos)<neededPos)
         {
-            drive.drive(.5,-.5);
-            timer.delay(0.08);
+            drive.drive(.5,-.45);
+            timer.delay(0.005);
             currentPos=(drive.getEncoderLeftP()-positionL);
+            timer.delay(0.05);
         }
-
+        drive.drive(0,0);
         if(this.angle==0)
         {
             currenty=(currenty-Math.toIntExact(Math.round(distance/18)));

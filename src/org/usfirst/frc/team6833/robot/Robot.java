@@ -99,6 +99,10 @@ public class Robot extends IterativeRobot
 			yes=true;
 
 		}
+		else
+		    {
+		        myDrive.drive(0.0,0.0);
+            }
 	}
 
 	/**
