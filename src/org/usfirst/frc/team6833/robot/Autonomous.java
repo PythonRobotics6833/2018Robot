@@ -219,7 +219,7 @@ public class Autonomous {
         ///angle is how many 90 degree
         if(turnl==true)
         {
-            while((drive.getEncoderRightP()-positionR)<(((27.55/23)*1024)*(angle*1.07)) )
+            while((drive.getEncoderRightP()-positionR)<(((27.55/23)*1024)*(angle*1.08)) )
             {
                 drive.drive(-0.45,-.45);
             }
