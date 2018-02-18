@@ -221,7 +221,7 @@ public class Autonomous {
         {
             while((drive.getEncoderRightP()-positionR)<((19.125*1024)*angle) )
             {
-                drive.drive(-1,-1);
+                drive.drive(-0.5,-.45);
             }
 
             this.angle= this.angle+angle;
@@ -236,7 +236,7 @@ public class Autonomous {
         {
             while((drive.getEncoderLeftP()-positionL)<((19.125*1024)*angle))
             {
-                drive.drive(1,1);
+                drive.drive(.5,.45);
             }
             this.angle= this.angle+angle;
             if (this.angle>360)
