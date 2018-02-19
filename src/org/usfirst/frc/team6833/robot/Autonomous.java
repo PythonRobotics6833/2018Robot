@@ -3,13 +3,13 @@ import edu.wpi.first.wpilibj.Timer;
 
 public class Autonomous {
 
-    Drivetrain drive;
-    Timer timer;
-    int StartingPoint;
-    double turnL;
-    double turnR;
-    int currentx;
-    int currenty;
+    private Drivetrain drive;
+    private Timer timer;
+    private int StartingPoint;
+    private double turnL;
+    private double turnR;
+    private int currentx;
+    private int currenty;
 
     private boolean right;
     private boolean left;
@@ -18,15 +18,15 @@ public class Autonomous {
     public double angle = 90;
 
     //all x lines in field
-    private int fieldx1[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    private int fieldx2[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    private int fieldx3[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    private int fieldx4[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    private int fieldx5[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    private int fieldx6[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    private int fieldx7[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    private int fieldx8[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    private int fieldx9[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    private int fieldx1[] =  {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    private int fieldx2[] =  {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    private int fieldx3[] =  {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    private int fieldx4[] =  {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    private int fieldx5[] =  {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    private int fieldx6[] =  {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    private int fieldx7[] =  {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    private int fieldx8[] =  {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    private int fieldx9[] =  {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     private int fieldx10[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     private int fieldx11[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     private int fieldx12[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -37,7 +37,7 @@ public class Autonomous {
     private int fieldx17[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     private int fieldx18[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
-    int fieldy[][] =
+    private int fieldy[][] =
             {
                     fieldx1,
                     fieldx2,
@@ -68,7 +68,7 @@ public class Autonomous {
     public Autonomous(Drivetrain drive, int StartingPoint) {
         this.drive = drive;
         this.StartingPoint = StartingPoint;
-
+        timer=new Timer();
     }
 
     public void calculatePosition(int StartingPoint, boolean blueTeam) {
@@ -90,6 +90,7 @@ public class Autonomous {
                     this.currenty=14;
                     break;
             }
+            this.angle=90;
         } else {
             switch (StartingPoint) {
                 case 0:
@@ -108,11 +109,13 @@ public class Autonomous {
                     this.currenty=14;
                     break;
             }
+            this.angle=180;
         }
 
     }
 
-    public void driveActionCheck() {
+    public void driveActionCheck()
+    {
         turnL = drive.getEncoderLeftV();
         turnR = drive.getEncoderRightV();
 
@@ -139,7 +142,52 @@ public class Autonomous {
         }
     }
 
-    public void driveToWayPoint(int positionx, int positiony)
+    public void makeWayPoints(int positionx, int positiony)
+    {
+        int deltaX=positionx-currentx;
+        int deltaY=positiony-currenty;
+        boolean notClear=false;
+        boolean XFirst=false;
+        boolean YFirst=false;
+
+        for(int i=0; i<=deltaX; i++)
+        {
+            if(fieldy[currenty][currentx+i]==1)
+            {
+                notClear=true;
+            }
+            else
+                {
+                    XFirst=true;
+                }
+        }
+        if(notClear)
+        {
+            for(int i=0; i<=deltaX; i++)
+            {
+                if(fieldy[currenty][currentx+i]==1)
+                {
+                    notClear=true;
+                }
+                else
+                    {
+                        YFirst=true;
+                        notClear=false;
+                    }
+            }
+
+        }
+        if(XFirst)
+        {
+            driveToWayPointX(positionx,positiony);
+        }
+        if(YFirst)
+        {
+            driveToWayPointY(positionx,positiony);
+        }
+    }
+
+    public void driveToWayPointX(int positionx, int positiony)
     {
         //find the delta of one
         int deltaX=positionx-currentx;
@@ -214,6 +262,86 @@ public class Autonomous {
 
 
     }
+    public void driveToWayPointY(int positionx, int positiony)
+    {
+        //find the delta of one
+        int deltaX=positionx-currentx;
+        int deltaY=positiony-currenty;
+
+        //Start
+        //if we have to move in the - y direction
+        if(deltaY<0 && this.angle != 0)
+        {
+            if (this.angle > 0 && this.angle<=180)
+            {
+                turn((this.angle/90),true, drive.getEncoderLeftP(),drive.getEncoderLeftP());
+            }
+            else if(this.angle> 180)
+            {
+                turn(((360-this.angle)/90),false, drive.getEncoderLeftP(),drive.getEncoderLeftP());
+            }
+        }
+        //if we have to go in the + y direction
+        if(deltaY>0&& this.angle !=180)
+        {
+            if (this.angle > 180)
+            {
+                turn(((this.angle-180)/90),true, drive.getEncoderLeftP(),drive.getEncoderLeftP());
+            }
+            else
+            {
+                turn( ((180-this.angle)/90),false, drive.getEncoderLeftP(),drive.getEncoderLeftP());
+            }
+        }
+        //drive on the y axis
+        if((deltaY>0 && this.angle==180) || (deltaY<0 && this.angle ==270))
+        {
+
+            moveFoward(deltaY*18,drive.getEncoderLeftP(),drive.getEncoderRightP());
+            deltaY=0;
+        }
+        //End of Copy
+
+        if(deltaX<0 && this.angle != 270)
+        {
+            if (this.angle > 270)
+            {
+                turn(1,true, drive.getEncoderLeftP(),drive.getEncoderLeftP());
+            }
+            else
+            {
+                turn(((270-this.angle)/90),false, drive.getEncoderLeftP(),drive.getEncoderLeftP());
+            }
+        }
+        //set up
+        if(deltaX>0&& this.angle !=90)
+        {
+            if (this.angle > 180)
+            {
+                turn(((this.angle-90)/90),true, drive.getEncoderLeftP(),drive.getEncoderLeftP());
+            }
+            else
+            {
+                turn( ((90-this.angle)/90),false, drive.getEncoderLeftP(),drive.getEncoderLeftP());
+            }
+        }
+        //drive on the x axis
+        if((deltaX>0 && this.angle==90) || (deltaX<0 && this.angle ==270))
+        {
+
+            moveFoward(deltaX*18,drive.getEncoderLeftP(),drive.getEncoderRightP());
+            deltaX=0;
+        }
+
+        //check to see if we can start moving in the y direction
+        if(deltaY==0)
+        {
+
+        }
+
+
+    }
+
     public void turn(double angle,boolean turnl, double positionL, double positionR)
     {
         ///angle is how many 90 degree
@@ -297,6 +425,3 @@ public class Autonomous {
 
 
 }
-
-
-
