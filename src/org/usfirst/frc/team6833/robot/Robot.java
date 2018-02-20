@@ -5,20 +5,22 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.drive.*;
 
 
 
 import edu.wpi.first.wpilibj.Timer;
 
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import org.opencv.core.Mat;
 import org.opencv.imgproc.Imgproc;
 
-import edu.wpi.cscore.CvSink;
-import edu.wpi.cscore.CvSource;
+
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Ultrasonic;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /**
@@ -32,6 +34,9 @@ import edu.wpi.first.wpilibj.Ultrasonic;
 public class Robot extends IterativeRobot 
 {	
 	//Serial port set up
+	Command autoMode;
+	SendableChooser autoChooser;
+
 	Ultrasonic sonic1;
 	Ultrasonic sonic2;
 	Ultrasonic sonic3;
@@ -76,13 +81,18 @@ public class Robot extends IterativeRobot
           //new Thread(() -> {
 		CameraServer server = CameraServer.getInstance();
 		server.startAutomaticCapture("cam0", 0);
+
             //}).start();
+		//setting up dashboard to chose auto position
+		//autoChooser=new SendableChooser();
+		//autoChooser.addDefault("Center and on left side", );
+		//autoChooser.addObject("Top and on the left side", );
 	}
 	
 	
 	public void autonomousInit() 
 	{
-	    System.err.println(myDrive.getEncoderLeftP());
+
 	    yes=false;
 	}
 
@@ -99,7 +109,7 @@ public class Robot extends IterativeRobot
 			//this works so use this for reference.
 			//auto.moveFoward(18.85, myDrive.getEncoderLeftP(), myDrive.getEncoderRightP());
            	auto.turn(1,true,myDrive.getEncoderLeftP(),myDrive.getEncoderRightP());
-           	auto.moveFoward(80,myDrive.getEncoderLeftP(),myDrive.getEncoderRightP());
+           	auto.moveForward(80,myDrive.getEncoderLeftP(),myDrive.getEncoderRightP());
             System.err.println(myDrive.getEncoderLeftP());
 			yes=true;
 

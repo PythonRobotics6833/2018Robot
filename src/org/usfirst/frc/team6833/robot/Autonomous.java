@@ -181,9 +181,13 @@ public class Autonomous {
         {
             driveToWayPointX(positionx,positiony);
         }
-        if(YFirst)
+        else if(YFirst)
         {
             driveToWayPointY(positionx,positiony);
+        }
+        if(!XFirst&&!YFirst)
+        {
+        //make more waypoints to move.
         }
     }
 
@@ -220,7 +224,7 @@ public class Autonomous {
         if((deltaX>0 && this.angle==90) || (deltaX<0 && this.angle ==270))
         {
 
-            moveFoward(deltaX*18,drive.getEncoderLeftP(),drive.getEncoderRightP());
+            moveForward(deltaX*18,drive.getEncoderLeftP(),drive.getEncoderRightP());
             deltaX=0;
         }
 
@@ -255,7 +259,7 @@ public class Autonomous {
             if((deltaY>0 && this.angle==180) || (deltaY<0 && this.angle ==270))
             {
 
-                moveFoward(deltaY*18,drive.getEncoderLeftP(),drive.getEncoderRightP());
+                moveForward(deltaY*18,drive.getEncoderLeftP(),drive.getEncoderRightP());
                 deltaY=0;
             }
         }
@@ -297,7 +301,7 @@ public class Autonomous {
         if((deltaY>0 && this.angle==180) || (deltaY<0 && this.angle ==270))
         {
 
-            moveFoward(deltaY*18,drive.getEncoderLeftP(),drive.getEncoderRightP());
+            moveForward(deltaY*18,drive.getEncoderLeftP(),drive.getEncoderRightP());
             deltaY=0;
         }
         //End of Copy
@@ -332,7 +336,7 @@ public class Autonomous {
             if((deltaX>0 && this.angle==90) || (deltaX<0 && this.angle ==270))
             {
 
-                moveFoward(deltaX*18,drive.getEncoderLeftP(),drive.getEncoderRightP());
+                moveForward(deltaX*18,drive.getEncoderLeftP(),drive.getEncoderRightP());
                 deltaX=0;
             }
 
@@ -377,7 +381,7 @@ public class Autonomous {
             return;
         }
     }
-    public void moveFoward(double distance, double positionL, double positionR)
+    public void moveForward(double distance, double positionL, double positionR)
     {
         ///distance is in inches
         //spare code here  -((distance)*drive.getEncoderLeftV()))
@@ -415,8 +419,10 @@ public class Autonomous {
     }
     public void moveBackward(double distance, double positionL, double positionR)
     {
+        double currentPos=(drive.getEncoderLeftP()-positionL);
+        double neededPos=(1024*((distance+5)/23));
         ///distance is in inches
-            if ((drive.getEncoderLeftP()-positionL)>(2048*(distance/8)))
+            if ((currentPos)<neededPos)
             {
                 drive.drive(-1,1);
             }
