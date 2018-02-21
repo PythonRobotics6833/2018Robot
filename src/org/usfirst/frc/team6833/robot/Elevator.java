@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.VictorSP;
 
 public class Elevator {
   private double kp;
@@ -21,15 +22,16 @@ public class Elevator {
   private DigitalInput switchBot;
   private DigitalInput switchTop;
 
-  private VictorSPX liftMotor1;
-  private VictorSPX liftMotor2;
+  private VictorSP liftMotor1;
+  private VictorSP liftMotor2;
 
 
-  public Elevator(int liftMotorPort1, int liftMotorPort2, int switchBotPort, int switchTopPort) {
-    liftMotor1 = new VictorSPX(liftMotorPort1);
-    liftMotor2=new VictorSPX()
-    switchBot = new DigitalInput(switchBotPort);
-    switchTop = new DigitalInput(switchTopPort);
+  public Elevator(int liftMotorPort1, int liftMotorPort2) {
+    liftMotor1 = new VictorSP(liftMotorPort1);
+    liftMotor2=new VictorSP(liftMotorPort2);
+
+    //switchBot = new DigitalInput(switchBotPort);
+    //switchTop = new DigitalInput(switchTopPort);
     kp = 0.0;
     ki = 0.0;
     kd = 0.0;
@@ -37,7 +39,8 @@ public class Elevator {
   }
 
   public Elevator(int liftMotorPort, int switchBotPort, int switchTopPort, double kp, double ki, double kd) {
-    liftMotor = new Victor(liftMotorPort);
+    liftMotor1 = new VictorSP(liftMotorPort);
+    liftMotor2=new VictorSP(liftMotorPort);
     switchBot = new DigitalInput(switchBotPort);
     switchTop = new DigitalInput(switchTopPort);
     this.kp = kp;
@@ -71,6 +74,19 @@ public class Elevator {
 
   public void setSetpoint(double pos) {
 
+  }
+  public void liftAutoControl(double POV)
+  {
+      if(POV>270&& POV<90)
+      {
+          liftMotor1.set(.25);
+          liftMotor2.set(.25);
+      }
+      else if(POV>90&&POV<270)
+      {
+          liftMotor1.set(-.25);
+          liftMotor2.set(-.25);
+      }
   }
 
   public void setSetpoint(int namedPos) {

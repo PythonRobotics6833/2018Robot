@@ -45,12 +45,13 @@ public class Robot extends IterativeRobot
 	//set up the the drivetrain
 	Drivetrain myDrive;
 	Autonomous auto;
+	Intake intake;
+	Elevator el;
 
 	//Everything else
 	Timer timer;
 	Joystick stick;
 	Joystick liftController;
-	Intake intake;
 	boolean yes=false;
 	public void robotInit() 
 	{
@@ -72,7 +73,7 @@ public class Robot extends IterativeRobot
 		auto=new Autonomous(myDrive,0);
 		//Set up the intake
 		intake= new Intake(0,1, false,true);
-
+		el=new Elevator(2,3);
 
 		sonic1.setAutomaticMode(true);
 		sonic2.setAutomaticMode(true);
@@ -139,6 +140,7 @@ public class Robot extends IterativeRobot
 		{
             myDrive.drive();
 			intake.intake(stick.getRawButton(5),stick.getRawButton(6));
+			System.err.println(stick.getPOV());
 		}
 		//When the emergency break is active
 		else
@@ -146,7 +148,7 @@ public class Robot extends IterativeRobot
             myDrive.drive(0.0,0.0);
 		}
 		//System.err.println("inches 1 "+inch1+"inches 2 "+inch2+"inches 3 "+inch3+"inches 4 "+inch4);
-		System.err.println(myDrive.getEncoderLeftV());
+		//System.err.println(myDrive.getEncoderLeftV());
 
 		
 	}
