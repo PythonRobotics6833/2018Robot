@@ -23,6 +23,7 @@ import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
+
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
@@ -70,7 +71,7 @@ public class Robot extends IterativeRobot
 
 		auto=new Autonomous(myDrive,0);
 		//Set up the intake
-		intake= new Intake(2,3);
+		intake= new Intake(0,1, false,true);
 
 
 		sonic1.setAutomaticMode(true);
@@ -137,13 +138,12 @@ public class Robot extends IterativeRobot
 		if(!EB) 
 		{
             myDrive.drive();
-			//intake.intake(Intake_input);
+			intake.intake(stick.getRawButton(5),stick.getRawButton(6));
 		}
 		//When the emergency break is active
 		else
 		{
             myDrive.drive(0.0,0.0);
-            intake.intake(0.0);
 		}
 		//System.err.println("inches 1 "+inch1+"inches 2 "+inch2+"inches 3 "+inch3+"inches 4 "+inch4);
 		System.err.println(myDrive.getEncoderLeftV());

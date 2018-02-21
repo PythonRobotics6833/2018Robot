@@ -1,5 +1,6 @@
 package org.usfirst.frc.team6833.robot;
 
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.Encoder;
@@ -20,11 +21,13 @@ public class Elevator {
   private DigitalInput switchBot;
   private DigitalInput switchTop;
 
-  private Victor liftMotor;
+  private VictorSPX liftMotor1;
+  private VictorSPX liftMotor2;
 
 
-  public Elevator(int liftMotorPort, int switchBotPort, int switchTopPort) {
-    liftMotor = new Victor(liftMotorPort);
+  public Elevator(int liftMotorPort1, int liftMotorPort2, int switchBotPort, int switchTopPort) {
+    liftMotor1 = new VictorSPX(liftMotorPort1);
+    liftMotor2=new VictorSPX()
     switchBot = new DigitalInput(switchBotPort);
     switchTop = new DigitalInput(switchTopPort);
     kp = 0.0;
