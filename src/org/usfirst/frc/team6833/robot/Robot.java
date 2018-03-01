@@ -67,13 +67,16 @@ public class Robot extends IterativeRobot
 		//the one below is for practice robot
 		//myDrive= new Drivetrain(1,0,3,stick);
 
-		//The drivetrain below is for the main robot
-		myDrive=new Drivetrain(3,1,2,4,3,stick);
+		//The drivetrain below is for the main robot Comp
+		//myDrive=new Drivetrain(3,1,2,4,3,stick);
+		//pactice Chassi
+		myDrive=new Drivetrain(1,0,3,stick);
+
 
 		auto=new Autonomous(myDrive,0);
 		//Set up the intake
-		intake= new Intake(0,1, false,true);
-		el=new Elevator(2,3);
+		intake= new Intake(2,3, false,true);
+		el=new Elevator(8,7);
 
 		sonic1.setAutomaticMode(true);
 		sonic2.setAutomaticMode(true);
@@ -140,7 +143,7 @@ public class Robot extends IterativeRobot
 		{
             myDrive.drive();
 			intake.intake(stick.getRawButton(5),stick.getRawButton(6));
-			System.err.println(stick.getPOV());
+			el.liftAutoControl(stick.getPOV());
 		}
 		//When the emergency break is active
 		else

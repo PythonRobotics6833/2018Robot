@@ -77,16 +77,21 @@ public class Elevator {
   }
   public void liftAutoControl(double POV)
   {
-      if(POV>270&& POV<90)
-      {
-          liftMotor1.set(.25);
-          liftMotor2.set(.25);
-      }
-      else if(POV>90&&POV<270)
+      if(POV>270 || (POV<90&&POV>=0))
       {
           liftMotor1.set(-.25);
           liftMotor2.set(-.25);
       }
+      else if(POV>90&&POV<270)
+      {
+          liftMotor1.set(.25);
+          liftMotor2.set(.25);
+      }
+      else if(POV==-1)
+        {
+          liftMotor1.set(0);
+          liftMotor2.set(0);
+        }
   }
 
   public void setSetpoint(int namedPos) {
