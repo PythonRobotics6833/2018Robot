@@ -61,16 +61,16 @@ public class Robot extends IterativeRobot
 		sonic4=new Ultrasonic(6,7);
 
 		stick = new Joystick(0);
-		//liftController= new Joystick(1);
+		liftController= new Joystick(1);
 
 		//Setting up drive train
 		//the one below is for practice robot
 		//myDrive= new Drivetrain(1,0,3,stick);
 
 		//The drivetrain below is for the main robot Comp
-		//myDrive=new Drivetrain(3,1,2,4,3,stick);
+		myDrive=new Drivetrain(3,1,2,4,3,stick);
 		//pactice Chassi
-		myDrive=new Drivetrain(1,0,3,stick);
+		//myDrive=new Drivetrain(1,0,3,stick);
 
 
 		auto=new Autonomous(myDrive,0);
@@ -142,8 +142,13 @@ public class Robot extends IterativeRobot
 		if(!EB) 
 		{
             myDrive.drive();
-			intake.intake(stick.getRawButton(5),stick.getRawButton(6));
-			el.liftAutoControl(stick.getPOV());
+            //original code
+			//intake.intake(stick.getRawButton(5),stick.getRawButton(6));
+			double intakeInput= liftController.getRawAxis(5)-liftController.getRawAxis(6);
+			intake.intake(intakeInput,intakeInput);
+			//for one person control
+			// /el.liftAutoControl(stick.getPOV());
+			el.liftStickControl(liftController);
 		}
 		//When the emergency break is active
 		else

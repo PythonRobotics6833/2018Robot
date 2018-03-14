@@ -1,10 +1,7 @@
 package org.usfirst.frc.team6833.robot;
 
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
-import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.Victor;
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.VictorSP;
+import edu.wpi.first.wpilibj.*;
 
 public class Elevator {
   private double kp;
@@ -73,6 +70,25 @@ public class Elevator {
   }
 
   public void setSetpoint(double pos) {
+
+  }
+  public void liftStickControl(Joystick stick)
+  {
+    if(stick.getRawAxis(1) < -0.5)
+    {
+      liftMotor1.set(-.25);
+      liftMotor2.set(-.25);
+    }
+    else if(stick.getRawAxis(1)>0.5)
+    {
+      liftMotor1.set(.25);
+      liftMotor2.set(.25);
+    }
+    else
+      {
+        liftMotor1.set(0);
+        liftMotor2.set(0);
+      }
 
   }
   public void liftAutoControl(double POV)
