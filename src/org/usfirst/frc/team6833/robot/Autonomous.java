@@ -80,18 +80,19 @@ public class Autonomous {
         if (blueTeam) {
             switch (StartingPoint) {
                 case 0:
-                    fieldy[5][35] = 2;
-                    this.currentx=35;
+                    fieldy[5][0] = 2;
+                    //this.currentx=35;
+                    this.currentx=0;
                     this.currenty=5;
                     break;
                 case 1:
-                    fieldy[9][35] = 2;
-                    this.currentx=35;
+                    fieldy[9][0] = 2;
+                    this.currentx=0;
                     this.currenty=9;
                     break;
                 case 2:
-                    fieldy[14][35] = 2;
-                    this.currentx=35;
+                    fieldy[14][0] = 2;
+                    this.currentx=0;
                     this.currenty=14;
                     break;
             }

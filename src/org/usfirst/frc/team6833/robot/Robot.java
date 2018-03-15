@@ -75,13 +75,13 @@ public class Robot extends IterativeRobot
 
 		auto=new Autonomous(myDrive,0);
 		//Set up the intake
-		intake= new Intake(2,3, false,true);
-		el=new Elevator(8,7);
-
+		intake= new Intake(0,1, false,true);
+		el=new Elevator(2,3);
+/*
 		sonic1.setAutomaticMode(true);
 		sonic2.setAutomaticMode(true);
 		sonic3.setAutomaticMode(true);
-		sonic4.setAutomaticMode(true);
+		sonic4.setAutomaticMode(true);*/
 		//camera code 
           //new Thread(() -> {
 		CameraServer server = CameraServer.getInstance();
@@ -144,10 +144,10 @@ public class Robot extends IterativeRobot
             myDrive.drive();
             //original code
 			//intake.intake(stick.getRawButton(5),stick.getRawButton(6));
-			double intakeInput= liftController.getRawAxis(5)-liftController.getRawAxis(6);
+			double intakeInput= liftController.getRawAxis(2)-liftController.getRawAxis(3);
 			intake.intake(intakeInput,intakeInput);
 			//for one person control
-			// /el.liftAutoControl(stick.getPOV());
+			//el.liftAutoControl(stick.getPOV());
 			el.liftStickControl(liftController);
 		}
 		//When the emergency break is active
