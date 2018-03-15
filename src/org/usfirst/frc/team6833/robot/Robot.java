@@ -144,10 +144,13 @@ public class Robot extends IterativeRobot
             myDrive.drive();
             //original code
 			//intake.intake(stick.getRawButton(5),stick.getRawButton(6));
+
 			double intakeInput= liftController.getRawAxis(2)-liftController.getRawAxis(3);
 			intake.intake(intakeInput,intakeInput);
+
 			//for one person control
 			//el.liftAutoControl(stick.getPOV());
+
 			el.liftStickControl(liftController);
 		}
 		//When the emergency break is active
