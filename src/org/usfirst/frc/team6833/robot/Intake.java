@@ -123,11 +123,11 @@ public class Intake {
   }
   public void intake(double leftSpeed, double rightSpeed)
   {
-    left.setSpeed(leftSpeed);
-    right.setSpeed(rightSpeed);
+    //left.setSpeed(leftSpeed);
+    //right.setSpeed(rightSpeed);
 
-    left.set(1);
-    right.set(1);
+    left.set(leftSpeed);
+    right.set(rightSpeed);
 
   }
   public void intake(double liftController)

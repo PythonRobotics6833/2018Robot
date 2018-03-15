@@ -108,7 +108,7 @@ public class Robot extends IterativeRobot
 	
 	public void autonomousPeriodic() 
 	{
-		if(yes==false)
+		/*if(yes==false)
 		{
 
 			//this works so use this for reference.
@@ -116,13 +116,15 @@ public class Robot extends IterativeRobot
            	auto.turn(1,true,myDrive.getEncoderLeftP(),myDrive.getEncoderRightP());
            	auto.moveForward(80,myDrive.getEncoderLeftP(),myDrive.getEncoderRightP());
             System.err.println(myDrive.getEncoderLeftP());
+
+
 			yes=true;
 
 		}
 		else
 		    {
 		        myDrive.drive(0.0,0.0);
-            }
+            }*/
 	}
 
 	/**

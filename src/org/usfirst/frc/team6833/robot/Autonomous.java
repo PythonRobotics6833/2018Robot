@@ -82,8 +82,8 @@ public class Autonomous {
         timer=new Timer();
     }
 
-    public void calculatePosition(int StartingPoint, boolean blueTeam) {
-        if (blueTeam) {
+    public void calculatePosition(int StartingPoint) {
+       // if (blueTeam) {
             switch (StartingPoint) {
                 case 0:
                     fieldy[5][0] = 2;
@@ -103,7 +103,7 @@ public class Autonomous {
                     break;
             }
             this.angle=90;
-        } else {
+        /*} else {
             switch (StartingPoint) {
                 case 0:
                     fieldy[5][0] = 2;
@@ -122,8 +122,7 @@ public class Autonomous {
                     break;
             }
             this.angle=180;
-        }
-
+        }*/
         Plates=DriverStation.getInstance().getGameSpecificMessage();
 
     }
