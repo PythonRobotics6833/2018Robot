@@ -1,9 +1,11 @@
 package org.usfirst.frc.team6833.robot;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.DriverStation;
 
 
 public class Autonomous {
 
+    private String Plates;
     private Drivetrain drive;
     private Timer timer;
     private int StartingPoint;
@@ -17,6 +19,8 @@ public class Autonomous {
     private boolean foward;
     private boolean backward;
     public double angle = 90;
+
+
 
     //all x lines in field
     private int fieldx1[] =  {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -87,7 +91,7 @@ public class Autonomous {
                     break;
                 case 2:
                     fieldy[14][35] = 2;
-                    this.currentx=0;
+                    this.currentx=35;
                     this.currenty=14;
                     break;
             }
@@ -112,6 +116,8 @@ public class Autonomous {
             }
             this.angle=180;
         }
+
+        Plates=DriverStation.getInstance().getGameSpecificMessage();
 
     }
 
@@ -143,7 +149,21 @@ public class Autonomous {
         }
     }
 
-    public void makeWayPoints(int positionx, int positiony)
+    public void makeWayPoints()
+    {
+        if(Plates.length()>0)
+        {
+            if(Plates.charAt(0)=='L')
+            {
+
+            }
+            else
+                {
+
+                }
+        }
+    }
+    public void XYFirstCheck(int positionx, int positiony)
     {
         int deltaX=positionx-currentx;
         int deltaY=positiony-currenty;
