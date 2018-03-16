@@ -124,15 +124,15 @@ public class Robot extends IterativeRobot
 	
 	public void autonomousPeriodic() 
 	{
-		/*if(yes==false)
+		if(yes==false)
 		{
 
 			//this works so use this for reference.
 			//auto.moveFoward(18.85, myDrive.getEncoderLeftP(), myDrive.getEncoderRightP());
-           	auto.turn(1,true,myDrive.getEncoderLeftP(),myDrive.getEncoderRightP());
-           	auto.moveForward(80,myDrive.getEncoderLeftP(),myDrive.getEncoderRightP());
-            System.err.println(myDrive.getEncoderLeftP());
-
+           	//auto.turn(1,true,myDrive.getEncoderLeftP(),myDrive.getEncoderRightP());
+           	auto.moveForward(140,myDrive.getEncoderLeftP(),myDrive.getEncoderRightP());
+            //System.err.println(myDrive.getEncoderLeftP());
+			//150 inches minimum
 
 			yes=true;
 
@@ -140,7 +140,7 @@ public class Robot extends IterativeRobot
 		else
 		    {
 		        myDrive.drive(0.0,0.0);
-            }*/
+            }
 	}
 
 	/**
@@ -149,10 +149,10 @@ public class Robot extends IterativeRobot
 	
 	public void teleopPeriodic() 
 	{
-		double inch1=sonic1.getRangeInches();
-		double inch2=sonic2.getRangeInches();
-		double inch3=sonic3.getRangeInches();
-		double inch4=sonic4.getRangeInches();
+		//double inch1=sonic1.getRangeInches();
+		//double inch2=sonic2.getRangeInches();
+		//double inch3=sonic3.getRangeInches();
+		//double inch4=sonic4.getRangeInches();
 		boolean EB= stick.getRawButton(8);
 		//double Intake_input= liftController.getRawAxis(3);
 
