@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.drive.*;
 
 
-
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Timer;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -36,7 +36,7 @@ public class Robot extends IterativeRobot
 {	
 	//Serial port set up
 	Command autoMode;
-	SendableChooser autoChooser;
+	//SendableChooser autoChooser;
 
 	Ultrasonic sonic1;
 	Ultrasonic sonic2;
@@ -47,6 +47,10 @@ public class Robot extends IterativeRobot
 	Autonomous auto;
 	Intake intake;
 	Elevator el;
+
+	//switches for auto mode
+    DigitalInput leftStart=new DigitalInput(0);
+    DigitalInput rightStart=new DigitalInput(1);
 
 	//Everything else
 	Timer timer;
@@ -87,9 +91,9 @@ public class Robot extends IterativeRobot
 		CameraServer server = CameraServer.getInstance();
 		server.startAutomaticCapture("cam0", 0);
 
+
             //}).start();
 		//setting up dashboard to chose auto position
-		//autoChooser=new SendableChooser();
 		//autoChooser.addDefault("Center and on left side", );
 		//autoChooser.addObject("Top and on the left side", );
 	}
@@ -99,6 +103,18 @@ public class Robot extends IterativeRobot
 	{
 
 	    yes=false;
+	    if(leftStart.get()==true)
+	    {
+            auto.calculatePosition(0);
+        }
+        else if(rightStart.get()==true)
+        {
+            auto.calculatePosition(1);
+        }
+        else
+        {
+            auto.calculatePosition(2);
+        }
 	}
 
 	/**

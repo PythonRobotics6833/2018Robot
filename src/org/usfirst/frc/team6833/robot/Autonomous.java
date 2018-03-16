@@ -84,6 +84,8 @@ public class Autonomous {
 
     public void calculatePosition(int StartingPoint) {
        // if (blueTeam) {
+
+        //0 is left side
             switch (StartingPoint) {
                 case 0:
                     fieldy[5][0] = 2;
