@@ -35,7 +35,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot 
 {	
 	//Serial port set up
-	Command autoMode;
+	//Command autoMode;
 	//SendableChooser autoChooser;
 
 	Ultrasonic sonic1;
@@ -49,11 +49,11 @@ public class Robot extends IterativeRobot
 	Elevator el;
 
 	//switches for auto mode
-    DigitalInput leftStart=new DigitalInput(0);
-    DigitalInput rightStart=new DigitalInput(1);
+    //DigitalInput leftStart=new DigitalInput(0);
+    //DigitalInput rightStart=new DigitalInput(1);
 
 	//Everything else
-	Timer timer;
+	Timer timer=new Timer();
 	Joystick stick;
 	Joystick liftController;
 	boolean yes=false;
@@ -102,7 +102,7 @@ public class Robot extends IterativeRobot
 	public void autonomousInit() 
 	{
 
-	    yes=false;
+	   /* yes=false;
 	    if(leftStart.get()==true)
 	    {
             auto.calculatePosition(0);
@@ -114,7 +114,7 @@ public class Robot extends IterativeRobot
         else
         {
             auto.calculatePosition(2);
-        }
+        }*/
 	}
 
 	/**
@@ -131,6 +131,23 @@ public class Robot extends IterativeRobot
 			//auto.moveFoward(18.85, myDrive.getEncoderLeftP(), myDrive.getEncoderRightP());
            	//auto.turn(1,true,myDrive.getEncoderLeftP(),myDrive.getEncoderRightP());
            	auto.moveForward(140,myDrive.getEncoderLeftP(),myDrive.getEncoderRightP());
+
+           	/*
+           	* auto.moveForward(40, myDrive.getEncoderLeftP(), myDrive.getEncoderRightP());
+           	* auto.makeWayPoints();
+           	* */
+
+           	/*
+           	while(timer<3)
+           	{
+           	el.setSpeed(1.0,1.0);
+           	}
+           	if(timer>=3)
+           	{
+           	el.setSpeed(0.0,0.0);
+           	}
+           	*/
+
             //System.err.println(myDrive.getEncoderLeftP());
 			//150 inches minimum
 
@@ -149,10 +166,10 @@ public class Robot extends IterativeRobot
 	
 	public void teleopPeriodic() 
 	{
-		//double inch1=sonic1.getRangeInches();
-		//double inch2=sonic2.getRangeInches();
-		//double inch3=sonic3.getRangeInches();
-		//double inch4=sonic4.getRangeInches();
+		double inch1=sonic1.getRangeInches();
+		double inch2=sonic2.getRangeInches();
+		double inch3=sonic3.getRangeInches();
+		double inch4=sonic4.getRangeInches();
 		boolean EB= stick.getRawButton(8);
 		//double Intake_input= liftController.getRawAxis(3);
 

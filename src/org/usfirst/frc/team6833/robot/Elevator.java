@@ -8,6 +8,8 @@ public class Elevator {
   private double ki;
   private double kd;
 
+  private double speed=0.125;
+
   public final int TOP = 0;
   public final int BOT = 1;
   public final int SWITCH = 2;
@@ -76,13 +78,13 @@ public class Elevator {
   {
     if(stick.getRawAxis(1) < -0.5)
     {
-      liftMotor1.set(-.25);
-      liftMotor2.set(-.25);
+      liftMotor1.set(-speed);
+      liftMotor2.set(-speed);
     }
     else if(stick.getRawAxis(1)>0.5)
     {
-      liftMotor1.set(.25);
-      liftMotor2.set(.25);
+      liftMotor1.set(speed);
+      liftMotor2.set(speed);
     }
     else
       {
@@ -91,7 +93,7 @@ public class Elevator {
       }
 
   }
-  public void liftAutoControl(double POV)
+  public void liftPOVControl(double POV)
   {
       if(POV>270 || (POV<90&&POV>=0))
       {
@@ -117,5 +119,10 @@ public class Elevator {
       System.err.println("Error: Setpoint accessing a value outside of the setpoints array index " +
                          "range. Not updating setpoint.");
     }
+  }
+  public void setSpeed(double left,double right)
+  {
+    liftMotor1.set(left);
+    liftMotor2.set(right);
   }
 }

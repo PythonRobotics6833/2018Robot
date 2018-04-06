@@ -2,7 +2,6 @@ package org.usfirst.frc.team6833.robot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.DriverStation;
 
-
 public class Autonomous {
 
     private String Plates;
@@ -15,18 +14,16 @@ public class Autonomous {
     private int currenty;
 
     private int switchlposx=6;
-    private int switchlposy=2;
+    private int switchlposy=5;
 
-    private int switchrposx;
-    private int switchrposy;
+    private int switchrposx=6;
+    private int switchrposy=14;
 
     private boolean right;
     private boolean left;
     private boolean foward;
     private boolean backward;
     public double angle = 90;
-
-
 
     //all x lines in field
     private int fieldx1[]  = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -103,6 +100,8 @@ public class Autonomous {
                     this.currentx=0;
                     this.currenty=14;
                     break;
+                    default:
+                        break;
             }
             this.angle=90;
         /*} else {
@@ -126,7 +125,6 @@ public class Autonomous {
             this.angle=180;
         }*/
         Plates=DriverStation.getInstance().getGameSpecificMessage();
-
     }
 
     public void driveActionCheck()
@@ -156,7 +154,6 @@ public class Autonomous {
             backward = true;
         }
     }
-
     public void makeWayPoints()
     {
         if(Plates.length()>0)
@@ -171,7 +168,7 @@ public class Autonomous {
                 }
         }
     }
-    public void XYFirstCheck(int positionx, int positiony)
+    private void XYFirstCheck(int positionx, int positiony)
     {
         int deltaX=positionx-currentx;
         int deltaY=positiony-currenty;
@@ -219,8 +216,7 @@ public class Autonomous {
         //make more waypoints to move.
         }
     }
-
-    public void driveToWayPointX(int positionx, int positiony)
+    private void driveToWayPointX(int positionx, int positiony)
     {
         //find the delta of one
         int deltaX=positionx-currentx;
@@ -295,12 +291,10 @@ public class Autonomous {
 
 
     }
-    public void driveToWayPointY(int positionx, int positiony)
-    {
-        //find the delta of one
+    private void driveToWayPointY(int positionx, int positiony)
+    {        //find the delta of one
         int deltaX=positionx-currentx;
         int deltaY=positiony-currenty;
-
         //Start
         //if we have to move in the - y direction
         if(deltaY<0 && this.angle != 0)
@@ -329,12 +323,9 @@ public class Autonomous {
         //drive on the y axis
         if((deltaY>0 && this.angle==180) || (deltaY<0 && this.angle ==270))
         {
-
             moveForward(deltaY*18,drive.getEncoderLeftP(),drive.getEncoderRightP());
             deltaY=0;
         }
-        //End of Copy
-
         //check to see if we can start moving in the y direction
         if(deltaY==0)
         {
@@ -373,8 +364,7 @@ public class Autonomous {
 
 
     }
-
-    public void turn(double angle,boolean turnl, double positionL, double positionR)
+    private void turn(double angle,boolean turnl, double positionL, double positionR)
     {
         ///angle is how many 90 degree
         if(turnl==true)
@@ -411,8 +401,7 @@ public class Autonomous {
         }
     }
     public void moveForward(double distance, double positionL, double positionR)
-    {
-        ///distance is in inches
+    {///distance is in inches
         //spare code here  -((distance)*drive.getEncoderLeftV()))
         double currentPos=(drive.getEncoderLeftP()-positionL);
         double neededPos=(1024*((distance+5)/23));
@@ -456,6 +445,4 @@ public class Autonomous {
                 drive.drive(-1,1);
             }
     }
-
-
 }
