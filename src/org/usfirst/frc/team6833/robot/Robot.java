@@ -134,7 +134,7 @@ public class Robot extends IterativeRobot
 
            	/*
            	* auto.moveForward(40, myDrive.getEncoderLeftP(), myDrive.getEncoderRightP());
-           	* auto.makeWayPoints();
+           	* auto.DriveToPoint();
            	* */
 
            	/*
@@ -166,10 +166,10 @@ public class Robot extends IterativeRobot
 	
 	public void teleopPeriodic() 
 	{
-		double inch1=sonic1.getRangeInches();
-		double inch2=sonic2.getRangeInches();
-		double inch3=sonic3.getRangeInches();
-		double inch4=sonic4.getRangeInches();
+		//double inch1=sonic1.getRangeInches();
+		//double inch2=sonic2.getRangeInches();
+		//double inch3=sonic3.getRangeInches();
+		//double inch4=sonic4.getRangeInches();
 		boolean EB= stick.getRawButton(8);
 		//double Intake_input= liftController.getRawAxis(3);
 
@@ -180,6 +180,7 @@ public class Robot extends IterativeRobot
             //original code
 			//intake.intake(stick.getRawButton(5),stick.getRawButton(6));
 
+            //competition robot intake code
 			double intakeInput= liftController.getRawAxis(2)-liftController.getRawAxis(3);
 			intake.intake(intakeInput,intakeInput);
 

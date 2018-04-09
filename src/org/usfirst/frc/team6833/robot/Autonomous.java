@@ -154,7 +154,14 @@ public class Autonomous {
             backward = true;
         }
     }
-    public void makeWayPoints()
+    public void auto(double encoderL, double encoderR)
+    {
+        //moving foward to clear the wall
+        moveForward(36, encoderL, encoderR);
+        DriveToPoint();
+    }
+
+    public void DriveToPoint()
     {
         if(Plates.length()>0)
         {
@@ -167,6 +174,10 @@ public class Autonomous {
                 XYFirstCheck(switchrposx,switchrposy);
                 }
         }
+        else
+            {
+                calculatePosition(1);
+            }
     }
     private void XYFirstCheck(int positionx, int positiony)
     {
@@ -374,10 +385,10 @@ public class Autonomous {
                 drive.drive(-0.45,-.45);
             }
 
-            this.angle= this.angle+angle;
+            this.angle= this.angle-(angle*90);
             if (this.angle<0)
             {
-                    this.angle=360-angle;
+                    this.angle=360+this.angle;
             }
             return;
 
@@ -388,10 +399,11 @@ public class Autonomous {
             {
                 drive.drive(.45,.45);
             }
-            this.angle= this.angle+angle;
+
+            this.angle= this.angle+(angle*90);
             if (this.angle>360)
             {
-                this.angle=angle-360;
+                this.angle=this.angle-360;
             }
             return;
         }
