@@ -171,6 +171,7 @@ public class Robot extends IterativeRobot
 		//double inch3=sonic3.getRangeInches();
 		//double inch4=sonic4.getRangeInches();
 		boolean EB= stick.getRawButton(8);
+		boolean hold= liftController.getRawButton(0);
 		//double Intake_input= liftController.getRawAxis(3);
 
 		//if the emergency break is not active
@@ -181,12 +182,15 @@ public class Robot extends IterativeRobot
 			//intake.intake(stick.getRawButton(5),stick.getRawButton(6));
 
             //competition robot intake code
-			double intakeInput= liftController.getRawAxis(2)-liftController.getRawAxis(3);
+			double intakeInput= liftController.getRawAxis(3) -liftController.getRawAxis(2);
 			intake.intake(intakeInput,intakeInput);
 
 			//for one person control
 			//el.liftAutoControl(stick.getPOV());
-
+			if(hold)
+			{
+				el.holdPossition(true);
+			}
 			el.liftStickControl(liftController);
 		}
 		//When the emergency break is active

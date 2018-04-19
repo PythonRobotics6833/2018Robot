@@ -79,6 +79,7 @@ public class Autonomous {
         timer=new Timer();
     }
 
+
     public void calculatePosition(int StartingPoint) {
        // if (blueTeam) {
 
@@ -420,7 +421,8 @@ public class Autonomous {
 
         while ((currentPos)<neededPos)
         {
-            drive.drive(.5,-.45);
+            //the right motor used to bee -.45 reset it to .5
+            drive.drive(.5,-.5);
             timer.delay(0.005);
             currentPos=(drive.getEncoderLeftP()-positionL);
             timer.delay(0.05);
