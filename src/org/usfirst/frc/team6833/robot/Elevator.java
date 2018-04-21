@@ -9,7 +9,7 @@ public class Elevator {
   private double kd;
 
   //should be .25 but Burak wants to break bumbers so Just Monika
-  private double speed=0.3;
+  private double speed=0.35;
 
   public final int TOP = 0;
   public final int BOT = 1;
@@ -115,8 +115,15 @@ public class Elevator {
 
   public void holdPossition(boolean hold)
   {
-    liftMotor2.set(-.1);
-    liftMotor1.set(-.1);
+    if(hold) {
+      liftMotor2.set(-.195);
+      liftMotor1.set(-.195);
+    }
+    else
+      {
+        liftMotor2.set(0);
+        liftMotor1.set(0);
+      }
   }
   public void setSetpoint(int namedPos) {
     if (namedPos >= 0 && namedPos < setpoints.length) {

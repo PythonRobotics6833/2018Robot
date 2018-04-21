@@ -2,6 +2,9 @@ package org.usfirst.frc.team6833.robot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.DriverStation;
 
+import javax.sound.midi.SysexMessage;
+import java.awt.*;
+
 public class Autonomous {
 
     private String Plates;
@@ -10,14 +13,17 @@ public class Autonomous {
     private int StartingPoint;
     private double turnL;
     private double turnR;
-    private int currentx;
-    private int currenty;
+    private int currentx=0;
+    private int currenty=11;
 
-    private int switchlposx=6;
-    private int switchlposy=5;
+    private int valtposx=0;
+    private int valtposy=8;
 
-    private int switchrposx=6;
-    private int switchrposy=14;
+    private int switchlposx=5;
+    private int switchlposy=4;
+
+    private int switchrposx=5;
+    private int switchrposy=13;
 
     private boolean right;
     private boolean left;
@@ -30,16 +36,16 @@ public class Autonomous {
     private int fieldx2[]  = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     private int fieldx3[]  = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     private int fieldx4[]  = {0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    private int fieldx5[]  = {0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    private int fieldx5[]  = {0, 0, 0, 0, 0, 3, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     private int fieldx6[]  = {0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     private int fieldx7[]  = {0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     private int fieldx8[]  = {0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    private int fieldx9[]  = {0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    private int fieldx10[] = {0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    private int fieldx9[]  = {0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    private int fieldx10[] = {3, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     private int fieldx11[] = {0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     private int fieldx12[] = {0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     private int fieldx13[] = {0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    private int fieldx14[] = {0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    private int fieldx14[] = {0, 0, 0, 0, 0, 3, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     private int fieldx15[] = {0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     private int fieldx16[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     private int fieldx17[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -159,10 +165,29 @@ public class Autonomous {
     {
         //moving foward to clear the wall
         moveForward(36, encoderL, encoderR);
-        DriveToPoint();
+        //System.out.println(currentx);
+        //DriveToPoint();
+        XYFirstCheck(switchrposx,switchrposy);
+        //System.out.println(currentx);
     }
 
-    public void DriveToPoint()
+    public void valt(double encoderL, double encoderR, Elevator el, Intake intake)
+    {
+        moveForward(36,encoderL,encoderR);
+        el.setSpeed(.2,.2);
+        Timer.delay(.5);
+        el.holdPossition(true);
+        Timer.delay(.2);
+        el.holdPossition(false);
+        XYFirstCheck(valtposx,valtposy);
+        intake.intake(-.5,-.5);
+        Timer.delay(.2);
+        intake.intake(0,0);
+        //Ya I get to move backward
+        moveBackward(140,encoderL,encoderR);
+    }
+
+    public void SwitchCode()
     {
         if(Plates.length()>0)
         {
@@ -180,7 +205,7 @@ public class Autonomous {
                 calculatePosition(1);
             }
     }
-    private void XYFirstCheck(int positionx, int positiony)
+    public void XYFirstCheck(int positionx, int positiony)
     {
         int deltaX=positionx-currentx;
         int deltaY=positiony-currenty;
@@ -188,16 +213,17 @@ public class Autonomous {
         boolean XFirst=false;
         boolean YFirst=false;
 
-        for(int i=0; i<=deltaX; i++)
+        for(int i=0; i<=(deltaX+2); i++)
         {
             if(fieldy[currenty][currentx+i]==1)
             {
                 notClear=true;
             }
-            else
-                {
-                    XFirst=true;
-                }
+
+        }
+        if(!notClear)
+        {
+            XFirst=true;
         }
         if(notClear)
         {
@@ -212,7 +238,9 @@ public class Autonomous {
                         YFirst=true;
                         notClear=false;
                     }
+
             }
+
 
         }
         if(XFirst)
@@ -234,31 +262,36 @@ public class Autonomous {
         int deltaX=positionx-currentx;
         int deltaY=positiony-currenty;
 
-        if(deltaX<0 && this.angle != 270)
+        if(deltaX<0 && angle != 270)
         {
-            if (this.angle > 270)
+            if (angle == 0)
             {
                 turn(1,true, drive.getEncoderLeftP(),drive.getEncoderLeftP());
             }
             else
                 {
-                    turn(((270-this.angle)/90),false, drive.getEncoderLeftP(),drive.getEncoderLeftP());
+                    turn(((270-angle)/90),false, drive.getEncoderLeftP(),drive.getEncoderLeftP());
                 }
         }
         //set up
-        if(deltaX>0&& this.angle !=90)
+        if(deltaX>0&& angle !=90)
         {
-            if (this.angle > 180)
+            if (angle >180 )
             {
-                turn(((this.angle-90)/90),true, drive.getEncoderLeftP(),drive.getEncoderLeftP());
+                turn(((angle-90)/90),false, drive.getEncoderLeftP(),drive.getEncoderLeftP());
+            }
+            else if( angle==0)
+            {
+                turn(1,false, drive.getEncoderLeftP(),drive.getEncoderLeftP());
+
             }
             else
             {
-                turn( ((90-this.angle)/90),false, drive.getEncoderLeftP(),drive.getEncoderLeftP());
+                turn( 1,true, drive.getEncoderLeftP(),drive.getEncoderLeftP());
             }
         }
         //drive on the x axis
-        if((deltaX>0 && this.angle==90) || (deltaX<0 && this.angle ==270))
+        if((deltaX>0 && angle==90) || (deltaX<0 && angle ==270))
         {
 
             moveForward(deltaX*18,drive.getEncoderLeftP(),drive.getEncoderRightP());
@@ -269,31 +302,31 @@ public class Autonomous {
         if(deltaX==0)
         {
             //if we have to move in the - y direction
-            if(deltaY<0 && this.angle != 0)
+            if(deltaY<0 && angle != 0)
             {
-                if (this.angle > 0 && this.angle<=180)
+                if (angle > 0 && angle<=180)
                 {
-                    turn((this.angle/90),true, drive.getEncoderLeftP(),drive.getEncoderLeftP());
+                    turn((angle/90),true, drive.getEncoderLeftP(),drive.getEncoderLeftP());
                 }
-                else if(this.angle> 180)
+                else if(angle> 180)
                 {
-                    turn(((360-this.angle)/90),false, drive.getEncoderLeftP(),drive.getEncoderLeftP());
+                    turn(((360-angle)/90),false, drive.getEncoderLeftP(),drive.getEncoderLeftP());
                 }
             }
             //if we have to go in the + y direction
-            if(deltaY>0&& this.angle !=180)
+            if(deltaY>0&& angle !=180)
             {
-                if (this.angle > 180)
+                if (angle > 180)
                 {
-                    turn(((this.angle-180)/90),true, drive.getEncoderLeftP(),drive.getEncoderLeftP());
+                    turn(((angle-180)/90),true, drive.getEncoderLeftP(),drive.getEncoderLeftP());
                 }
                 else
                 {
-                    turn( ((180-this.angle)/90),false, drive.getEncoderLeftP(),drive.getEncoderLeftP());
+                    turn( ((180-angle)/90),false, drive.getEncoderLeftP(),drive.getEncoderLeftP());
                 }
             }
             //drive on the y axis
-            if((deltaY>0 && this.angle==180) || (deltaY<0 && this.angle ==270))
+            if((deltaY>0 && angle==180) || (deltaY<0 && angle ==270))
             {
 
                 moveForward(deltaY*18,drive.getEncoderLeftP(),drive.getEncoderRightP());
@@ -309,63 +342,72 @@ public class Autonomous {
         int deltaY=positiony-currenty;
         //Start
         //if we have to move in the - y direction
-        if(deltaY<0 && this.angle != 0)
+        System.out.println(deltaX+" deltaX");
+        if(deltaY<0 && angle != 0)
         {
-            if (this.angle > 0 && this.angle<=180)
+            if (angle > 0 && this.angle<=180)
             {
-                turn((this.angle/90),true, drive.getEncoderLeftP(),drive.getEncoderLeftP());
+                System.out.println("Finally");
+                turn((angle/90),true, drive.getEncoderLeftP(),drive.getEncoderLeftP());
             }
-            else if(this.angle> 180)
+            else if(angle> 180)
             {
-                turn(((360-this.angle)/90),false, drive.getEncoderLeftP(),drive.getEncoderLeftP());
+                turn(((360-angle)/90),false, drive.getEncoderLeftP(),drive.getEncoderLeftP());
             }
         }
         //if we have to go in the + y direction
-        if(deltaY>0&& this.angle !=180)
+        if(deltaY>0&& angle !=180)
         {
-            if (this.angle > 180)
+            if (angle > 180)
             {
-                turn(((this.angle-180)/90),true, drive.getEncoderLeftP(),drive.getEncoderLeftP());
+                turn(((angle-180)/90),true, drive.getEncoderLeftP(),drive.getEncoderLeftP());
             }
             else
             {
-                turn( ((180-this.angle)/90),false, drive.getEncoderLeftP(),drive.getEncoderLeftP());
+                turn( ((180-angle)/90),false, drive.getEncoderLeftP(),drive.getEncoderLeftP());
             }
         }
         //drive on the y axis
-        if((deltaY>0 && this.angle==180) || (deltaY<0 && this.angle ==270))
+        if((deltaY>0 && angle==180) || (deltaY<0 && this.angle ==270))
         {
-            moveForward(deltaY*18,drive.getEncoderLeftP(),drive.getEncoderRightP());
+            moveForward(deltaY*24,drive.getEncoderLeftP(),drive.getEncoderRightP());
             deltaY=0;
         }
-        //check to see if we can start moving in the y direction
+        System.out.println(deltaY);
+        //check to see if we can start moving in the x direction
         if(deltaY==0)
         {
-            if(deltaX<0 && this.angle != 270)
+            if(deltaX<0 && angle != 270)
             {
-                if (this.angle > 270)
+                if (this.angle == 0)
                 {
                     turn(1,true, drive.getEncoderLeftP(),drive.getEncoderLeftP());
                 }
                 else
                 {
-                    turn(((270-this.angle)/90),false, drive.getEncoderLeftP(),drive.getEncoderLeftP());
+                    turn(((270-angle)/90),false, drive.getEncoderLeftP(),drive.getEncoderLeftP());
                 }
             }
             //set up
-            if(deltaX>0&& this.angle !=90)
+            if(deltaX>0&& angle !=90)
             {
-                if (this.angle > 180)
+                if (angle > 180 )
                 {
-                    turn(((this.angle-90)/90),true, drive.getEncoderLeftP(),drive.getEncoderLeftP());
+                    turn(((angle-90)/90),false, drive.getEncoderLeftP(),drive.getEncoderRightP());
+                }
+                else if( angle==0)
+                {
+                    turn(1,false, drive.getEncoderLeftP(),drive.getEncoderRightP());
+
                 }
                 else
                 {
-                    turn( ((90-this.angle)/90),false, drive.getEncoderLeftP(),drive.getEncoderLeftP());
+                    turn( 1,true, drive.getEncoderLeftP(),drive.getEncoderRightP());
+                    System.out.println(angle);
                 }
             }
             //drive on the x axis
-            if((deltaX>0 && this.angle==90) || (deltaX<0 && this.angle ==270))
+            if((deltaX>0 && angle==90) || (deltaX<0 && angle ==270))
             {
 
                 moveForward(deltaX*18,drive.getEncoderLeftP(),drive.getEncoderRightP());
@@ -376,14 +418,14 @@ public class Autonomous {
 
 
     }
-    private void turn(double angle,boolean turnl, double positionL, double positionR)
+    public void turn(double angle,boolean turnl, double positionL, double positionR)
     {
         ///angle is how many 90 degree
         if(turnl==true)
         {
-            while((drive.getEncoderRightP()-positionR)<(((27.55/23)*1024)*(angle*1.08)) )
+            while((drive.getEncoderRightP()-positionR)<(1.9*(((27.55/23)*1024)*(angle*1.08))))
             {
-                drive.drive(-0.45,-.45);
+                drive.drive(-0.6,-.6);
             }
 
             this.angle= this.angle-(angle*90);
@@ -396,9 +438,9 @@ public class Autonomous {
         }
         else if(turnl==false)
         {
-            while((drive.getEncoderLeftP()-positionL)<(((27.55/23)*1024)*(angle*1.07)))
+            while((drive.getEncoderLeftP()-positionL)<(1.9*(((27.55/23)*1024)*(angle*1.08))))
             {
-                drive.drive(.45,.45);
+                drive.drive(.6,.6);
             }
 
             this.angle= this.angle+(angle*90);

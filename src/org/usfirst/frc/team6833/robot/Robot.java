@@ -130,8 +130,20 @@ public class Robot extends IterativeRobot
 			//this works so use this for reference.
 			//auto.moveFoward(18.85, myDrive.getEncoderLeftP(), myDrive.getEncoderRightP());
            	//auto.turn(1,true,myDrive.getEncoderLeftP(),myDrive.getEncoderRightP());
-           	auto.moveForward(140,myDrive.getEncoderLeftP(),myDrive.getEncoderRightP());
+           	//auto.moveForward(140,myDrive.getEncoderLeftP(),myDrive.getEncoderRightP());
+			auto.auto(myDrive.getEncoderLeftP(),myDrive.getEncoderRightP());
 
+			/*auto.auto(myDrive.getEncoderLeftP(),myDrive.getEncoderRightP());
+           	el.setSpeed(.2,.2);
+           	Timer.delay(.48);
+           	el.holdPossition(true);
+           	intake.intake(-.5,-.5);
+           	Timer.delay(.5);
+           	intake.intake(0,0);
+           	el.setSpeed(-.175,-.175);
+           	Timer.delay(.6);
+           	el.setSpeed(0,0);*/
+			//auto.auto(myDrive.getEncoderLeftP(),myDrive.getEncoderRightP());
            	/*
            	* auto.moveForward(40, myDrive.getEncoderLeftP(), myDrive.getEncoderRightP());
            	* auto.DriveToPoint();
@@ -171,7 +183,7 @@ public class Robot extends IterativeRobot
 		//double inch3=sonic3.getRangeInches();
 		//double inch4=sonic4.getRangeInches();
 		boolean EB= stick.getRawButton(8);
-		boolean hold= liftController.getRawButton(0);
+		boolean hold= liftController.getRawButton(1);
 		//double Intake_input= liftController.getRawAxis(3);
 
 		//if the emergency break is not active
@@ -191,7 +203,9 @@ public class Robot extends IterativeRobot
 			{
 				el.holdPossition(true);
 			}
-			el.liftStickControl(liftController);
+			else {
+				el.liftStickControl(liftController);
+			}
 		}
 		//When the emergency break is active
 		else
